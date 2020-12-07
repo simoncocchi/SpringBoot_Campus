@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CarDaoImpl implements CarDao{
+public class CarDaoImpl implements CarDao {
 
     public static List<Car> carlist = new ArrayList<>();
+
     static {
         carlist.add(new Car(1, "Tesla", "modele S"));
         carlist.add(new Car(2, "Tesla", "modele X"));
@@ -27,7 +28,7 @@ public class CarDaoImpl implements CarDao{
     @Override
     public Car findById(int id) {
         Car result = null;
-        for (Car car: carlist) {
+        for (Car car : carlist) {
             if (car.getId() == id) {
                 result = car;
             }
@@ -38,7 +39,7 @@ public class CarDaoImpl implements CarDao{
     @Override
     public Car findByBrand(String brand) {
         List<Car> filteredList = null;
-        for (Car car: carlist) {
+        for (Car car : carlist) {
             if (car.getBrand() == brand) {
                 filteredList.add(car);
             }
@@ -48,6 +49,13 @@ public class CarDaoImpl implements CarDao{
 
     @Override
     public Car save(Car car) {
+        carlist.add(car);
         return null;
+    }
+
+    @Override
+    public Car findLastInList() {
+        Car lastCar = carlist.get(carlist.size() - 1);
+        return lastCar;
     }
 }

@@ -14,4 +14,6 @@ public interface CarDao {
 
     public Car save(Car car);
 
+    public Car findLastInList();
+
 }
