@@ -14,3 +14,19 @@ Model: Gerer la structure de nos éléments avec des propriétés definie, puis 
 Thymeleaf: Un moteur de template pour java qui va permettre de rejouter des vue a notre projet
 
 Thymeleaf Marker: instruction pour combiner les donnée de java et les vues de thymeleaf
+
+@RestController
+
+@Repository
+
+@Service
+
+@Autowired
+
+@RequestMapping
+
+@ResponseBody
+
+@PathVariable
+
+@EnableSwagger2
