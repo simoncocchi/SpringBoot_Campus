@@ -1,55 +1,41 @@
 package com.microservice.microservice.controller;
 
-import com.microservice.microservice.dao.CarDao;
+import com.microservice.microservice.service.CarService;
 import com.microservice.microservice.model.Car;
-import com.microservice.microservice.model.CarForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 public class CarController {
 
-    // Injectez (inject) via application.properties.
-    @Value("${welcome.message}")
-    private String message;
-
-    @Value("${error.message}")
-    private String errorMessage;
-
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String index(Model model) {
-
-        model.addAttribute("message", message);
-
-        return "index";
-    }
+    private CarService carService;
 
     @Autowired
-    private CarDao CarDao;
-
-    @RequestMapping(value = {"/carList"}, method = RequestMethod.GET)
-    public String carList(Model model) {
-
-        model.addAttribute("cars", CarDao.findAll());
-
-        return "carList";
+    public CarController(CarService carService) {
+        this.carService = carService;
     }
 
-    @RequestMapping(value = {"/addCar"}, method = RequestMethod.GET)
-    public String showAddCarPage(Model model) {
-
-        CarForm carForm = new CarForm();
-        model.addAttribute("carForm", carForm);
-
-        return "addCar";
+    @RequestMapping(value = "/cars/{carId}", method = RequestMethod.GET)
+    @ResponseBody
+    Car getCarById(@PathVariable int carId) {
+        Car car = carService.getCarById(carId);
+        return car;
     }
 
+    @RequestMapping(value = "/cars", method = RequestMethod.GET)
+    @ResponseBody
+    List<Car> getAllcars() {
+        return this.carService.getAllCars();
+    }
+
+    @RequestMapping(value = "/cars", method = RequestMethod.POST)
+    void addCar(@RequestBody Car car){
+        this.carService.addCar(car);
+    }
+
+    /*
     @RequestMapping(value = {"/addCar"}, method = RequestMethod.POST)
     public String saveCar(Model model, @ModelAttribute("carForm") CarForm carForm) {
 
@@ -65,8 +51,8 @@ public class CarController {
             return "redirect:/carList";
         }
 
-        model.addAttribute("errorMessage", errorMessage);
         return "addCar";
     }
+     */
 
 }
