@@ -31,8 +31,19 @@ public class CarController {
     }
 
     @RequestMapping(value = "/cars", method = RequestMethod.POST)
-    void addCar(@RequestBody Car car){
+    void addCar(@RequestBody Car car) {
         this.carService.addCar(car);
+    }
+
+    @RequestMapping(value = "/cars/{carId}", method = RequestMethod.DELETE)
+    @ResponseBody
+    void deleteCar(@PathVariable int carId) {
+        this.carService.deleteCarById(carId);
+    }
+
+    @RequestMapping(value = "/cars", method = RequestMethod.PUT)
+    void updateCar(@RequestBody Car car) {
+        this.carService.updateCar(car);
     }
 
     /*

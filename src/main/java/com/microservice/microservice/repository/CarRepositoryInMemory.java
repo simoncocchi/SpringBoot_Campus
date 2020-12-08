@@ -37,4 +37,28 @@ public class CarRepositoryInMemory implements CarRepository {
     public List<Car> getAllCars() {
         return carlist;
     }
+
+    @Override
+    public Car deleteCarById(int carId) {
+        int i = 0;
+        for (Car car : carlist) {
+            if (car.getId() == carId) {
+                carlist.remove(i);
+                return car;
+            }
+            i++;
+        }
+        return null;
+    }
+
+    @Override
+    public void updateCar(Car car) {
+        for (Car carforeach : carlist) {
+            if (carforeach.getId() == car.getId()) {
+                carforeach.setId(car.getId());
+                carforeach.setBrand(car.getBrand());
+                carforeach.setModele(car.getModele());
+            }
+        }
+    }
 }
