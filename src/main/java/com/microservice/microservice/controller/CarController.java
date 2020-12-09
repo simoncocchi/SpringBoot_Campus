@@ -41,9 +41,9 @@ public class CarController {
         this.carService.deleteCarById(carId);
     }
 
-    @RequestMapping(value = "/cars", method = RequestMethod.PUT)
-    void updateCar(@RequestBody Car car) {
-        this.carService.updateCar(car);
+    @RequestMapping(value = "/cars/{carId}", method = RequestMethod.PUT)
+    void updateCar(@RequestBody Car partialCar,@PathVariable int carId) {
+        this.carService.updateCar(partialCar, carId);
     }
 
     /*

@@ -30,3 +30,5 @@ Thymeleaf Marker: instruction pour combiner les donnée de java et les vues de t
 @PathVariable
 
 @EnableSwagger2
+
+@Bean Execute cette methode et elle sera appellé qu'une seule fois, si on en a besoin on a juste a l'autowired. 

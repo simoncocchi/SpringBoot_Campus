@@ -39,8 +39,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void updateCar(Car car) {
-        this.carRepository.updateCar(car);
+    public void updateCar(Car partialCar, int carId) {
+        this.carRepository.updateCar(partialCar, carId);
     }
     /*
     @Override
