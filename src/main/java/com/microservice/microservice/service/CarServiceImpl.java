@@ -17,30 +17,29 @@ public class CarServiceImpl implements CarService {
         this.carRepository = carRepository;
     }
 
-
     @Override
     public Car getCarById(int carId) {
-       return this.carRepository.getCarById(carId);
+        return this.carRepository.findById(carId);
     }
 
     @Override
     public void addCar(Car car) {
-        this.carRepository.addCar(car);
+        this.carRepository.save(car);
     }
 
     @Override
     public List<Car> getAllCars() {
-        return this.carRepository.getAllCars();
+        return this.carRepository.findAll();
     }
 
     @Override
-    public Car deleteCarById(int carId) {
-        return this.carRepository.deleteCarById(carId);
+    public void deleteCarById(int carId) {
+        this.carRepository.deleteById(carId);
     }
 
     @Override
     public void updateCar(Car partialCar, int carId) {
-        this.carRepository.updateCar(partialCar, carId);
+        this.carRepository.save(partialCar);
     }
     /*
     @Override

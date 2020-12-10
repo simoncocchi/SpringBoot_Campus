@@ -1,13 +1,12 @@
 package com.microservice.microservice.repository;
 
 import com.microservice.microservice.model.Car;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface CarRepository {
-    Car getCarById(int carId);
-    void addCar(Car car);
-    List<Car> getAllCars();
-    Car deleteCarById(int carId);
-    void updateCar(Car partialCar, int carId);
+@Repository
+public interface CarRepository extends JpaRepository<Car, Integer> {
+    Car findById(int carId);
 }

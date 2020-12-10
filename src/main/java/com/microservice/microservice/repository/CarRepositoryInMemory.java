@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class CarRepositoryInMemory implements CarRepository {
+public class CarRepositoryInMemory {
 
     public static List<Car> carlist = new ArrayList<>();
 
@@ -35,7 +34,7 @@ public class CarRepositoryInMemory implements CarRepository {
 
     }
 
-    @Override
+
     public Car getCarById(int carId) {
         for (Car car : carlist) {
             if (car.getId() == carId) return car;
@@ -43,17 +42,17 @@ public class CarRepositoryInMemory implements CarRepository {
         return null;
     }
 
-    @Override
+
     public void addCar(Car car) {
         carlist.add(car);
     }
 
-    @Override
+
     public List<Car> getAllCars() {
         return carlist;
     }
 
-    @Override
+
     public Car deleteCarById(int carId) {
         int i = 0;
         for (Car car : carlist) {
@@ -66,7 +65,7 @@ public class CarRepositoryInMemory implements CarRepository {
         return null;
     }
 
-    @Override
+
     public void updateCar(Car partialCar, int carId) {
         for (Car carforeach : carlist) {
             if (carforeach.getId() == carId) {

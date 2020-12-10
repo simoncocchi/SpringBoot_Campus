@@ -1,7 +1,14 @@
 package com.microservice.microservice.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Car {
 
+    @Id
+    @GeneratedValue
     private int id;
     private String brand;
     private String modele;
@@ -10,6 +17,10 @@ public class Car {
         this.id = id;
         this.brand = brand;
         this.modele = modele;
+    }
+
+    public Car() {
+
     }
 
     public int getId() {
